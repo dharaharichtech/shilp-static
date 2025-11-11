@@ -65,28 +65,50 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col space-y-4 w-full lg:w-1/3 lg:items-center">
-            <h2 className="text-xs sm:text-xl font-semibold">Quick Links</h2>
+       <div className="flex flex-col space-y-4 w-full lg:w-1/4">
+            <h2 className="text-xs sm:text-xl font-semibold">Explore</h2>
             <ul className="space-y-2 text-xs sm:text-lg">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/projects/residential">Residential Projects</Link>
               </li>
               <li>
-                <Link to="/projects/commercial">
-                  Commercial
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects/residential">
-                  Residential
-                </Link>
+                <Link to="/projects/commercial">Commercial Projects</Link>
               </li>
               <li>
                 <Link to="/projects/plots">Plots</Link>
               </li>
               <li>
+                <Link to="/project-overview">Project Tree</Link>
+              </li>
+              <li>
+                <Link to="/blog">Blogs</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col space-y-4 w-full lg:w-1/4">
+            <h2 className="text-xs sm:text-xl font-semibold">About Shilp</h2>
+            <ul className="space-y-2 text-xs sm:text-lg">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+                <li>
                 <Link to="about-us">About Us</Link>
               </li>
+              <li>
+                <Link to="/our-team">
+                  Our Team
+                </Link>
+              </li>
+              <li>
+                <Link to="/careers">
+                  Career
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact-us">contact Us</Link>
+              </li>
+            
             </ul>
           </div>
 
