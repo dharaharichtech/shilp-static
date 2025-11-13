@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 import { BsDownload } from "react-icons/bs";
-import Images from "../../assets/Images";
 import { useNavigate } from "react-router-dom";
 import { ProjectDataTypes } from "../../types/projectDataTypes.types";
 import EnquiryModal from "../Modals/EnquiryModal";

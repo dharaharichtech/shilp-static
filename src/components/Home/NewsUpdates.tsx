@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Title from "../Common/Title";
 import BlogCard from "../Common/BlogCard";
 import Slider from "react-slick";
@@ -6,9 +6,40 @@ import "./home.css";
 import { blogData } from "../../assets/data/blogData";
 import AnimateOnInView from "../../animation/AnimateOnInView";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import { blogApi } from "../../api/blogApi";
+import { BlogData } from "../../types/blogs.types";
+import { imageUtils } from "../../utils/imageUtils";
 
 const NewsUpdates = () => {
   const sliderRef = useRef<Slider>(null);
+  const [blogs, setBlogs] = useState<BlogData[]>(blogData); // Default to static data
+  const [loading, setLoading] = useState(true);
+
+  // Fetch blogs from API
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        const response = await blogApi.getAllBlogsTransformed();
+        
+        if (response.success && response.data) {
+          // Use the already transformed data from API
+          const blogsWithImages = response.data.map(blog => ({
+            ...blog,
+            image: imageUtils.getImageUrl(blog.image)
+          })) as BlogData[];
+          setBlogs(blogsWithImages);
+        }
+      } catch (error) {
+        console.error('Failed to fetch blogs:', error);
+        // Keep using static data if API fails
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   const SlickBtnNext = ({ onClick }: { onClick: () => void }) => {
     return (
@@ -96,8 +127,8 @@ const NewsUpdates = () => {
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
       >
         <Slider ref={sliderRef} {...settings}>
-          {blogData.map((blogs, index) => (
-            <BlogCard key={index} data={blogs} />
+          {blogs.map((blog, index) => (
+            <BlogCard key={index} data={blog} />
           ))}
         </Slider>
         <div className="flex justify-center lg:hidden gap-3">

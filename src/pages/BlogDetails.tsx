@@ -522,7 +522,8 @@ const BlogDetails = () => {
                     type="number"
                     label="Contact No."
                     onInput={(e) => {
-                      e.target.value = Math.max(0, parseInt(e.target.value))
+                      const target = e.target as HTMLInputElement;
+                      target.value = Math.max(0, parseInt(target.value))
                         .toString()
                         .slice(0, 10);
                     }}

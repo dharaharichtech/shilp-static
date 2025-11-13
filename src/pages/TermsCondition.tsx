@@ -1,12 +1,9 @@
-import BannerImg from "../components/BannerImg";
-import Images from "../assets/Images";
-import mobiletc from "../assets/Images/mobile/building-side-view.webp"
+import BannerComponent from "../components/Common/BannerComponent";
 
 const TermsCondition = () => {
   return (
     <>
-      <BannerImg image={Images.newTermsBanner} className="sm:block hidden"/>
-      <BannerImg image={mobiletc} className="sm:hidden block"/>
+      <BannerComponent bannerType="termsConditionsBanner" />
       <section className="px-5 md:px-10 overflow-hidden space-y-8 py-10 ">
         <div>
           <p className="text-xl text-[#727272]">

@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import BannerImg from "../components/BannerImg";
-import Images from "../assets/Images";
+import BannerComponent from "../components/Common/BannerComponent";
 import TitleTwo from "../components/Common/TitleTwo";
 import { Checkbox, TextField, Select, MenuItem, InputAdornment, IconButton, FormControl, InputLabel, FormHelperText } from "@mui/material";
 import CustomButton from "../components/Common/CustomButton";
@@ -11,7 +10,6 @@ import ConfirmationModal from "../components/Modals/ConfirmationModal";
 import { ENQUIRY_SUCCESS_MESSAGE } from "../constants/strings";
 import axios from "axios";
 import { BASE_URL } from "../constants/projectTypes";
-import mobile_carr from "../assets/Images/mobile/mobile-career-banner.webp";
 import UploadIcon from "../assets/Icons/Vector.svg";
 const Career = () => {
   const [loading, setLoading] = useState(false);
@@ -34,7 +32,7 @@ const Career = () => {
     email: "",
     contact: "",
     designation: "",
-    resume: null,
+    resume: undefined,
     message: "",
     agreement: false
   };
@@ -47,18 +45,18 @@ const Career = () => {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(CareerValidationSchema),
+    resolver: yupResolver(CareerValidationSchema) as any,
     defaultValues
   });
   const designationValue = watch("designation");
-  const handleDesignationChange = (event) => {
+  const handleDesignationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setValue("designation", event.target.value);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setResumeFile(event.target.files[0]);
-      setValue("resume", event.target.files[0], { shouldValidate: true });
+      setValue("resume", event.target.files[0] as any, { shouldValidate: true });
     }
   };
 
@@ -66,7 +64,7 @@ const Career = () => {
     fileInputRef.current?.click();
   };
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
     setChecked(isChecked);
     setValue("agreement", isChecked);
@@ -117,8 +115,7 @@ const Career = () => {
   // Rest of the component remains the same...
   return (
 <>
-      <BannerImg image={Images.careerBanner} alt="" className="sm:block hidden" />
-      <BannerImg image={mobile_carr} alt="Career section banner optimized for mobile view." className="sm:hidden block" />
+      <BannerComponent bannerType="careerBanner" />
       <div className="container-base px-4 mb-20">
       <div className="flex flex-col items-center justify-center mt-10 sm:mt-20 px-0  md:px-20">
   <TitleTwo text={'Career'} />
@@ -156,7 +153,8 @@ const Career = () => {
               label="Contact No."
               variant="outlined"
               onInput={(e) => {
-                e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 10);
+                const target = e.target as HTMLInputElement;
+                target.value = Math.max(0, parseInt(target.value)).toString().slice(0, 10);
               }}
               className="mb-4"
               fullWidth
@@ -171,8 +169,8 @@ const Career = () => {
                 labelId="designation-label"
                 label="Designation"
                 value={designationValue || ""}
-                onChange={handleDesignationChange}
                 {...register("designation")}
+                onChange={(event) => handleDesignationChange(event as any)}
               >
                 {jobOptions.map((option, index) => (
                   <MenuItem key={index} value={option}>

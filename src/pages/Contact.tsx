@@ -12,7 +12,7 @@ import Images from "../assets/Images";
 import { getCategoryData } from "../utils/helper";
 import { commerical, plots, residential } from "../constants/projectTypes";
 import { enquirySchema } from "../validations/enquiry.validation";
-import BannerImg from "../components/BannerImg";
+import BannerComponent from "../components/Common/BannerComponent";
 import { useNavigate } from "react-router-dom";
 
 
@@ -85,7 +85,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <BannerImg image={`${Images.contactBanner}`} />
+      <BannerComponent bannerType="contactBanners" />
       <div className="container-base ">
         <div className="flex lg:gap-10 flex-wrap lg:flex-nowrap md:px-10 ">
           <AnimateOnInView
@@ -116,7 +116,8 @@ const ContactUs = () => {
                 type="number"
                 label="Contact No."
                 onInput={(e) => {
-                  e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 10);
+                  const target = e.target as HTMLInputElement;
+                  target.value = Math.max(0, parseInt(target.value)).toString().slice(0, 10);
                 }}
                 className="w-full"
                 {...register("contact")}

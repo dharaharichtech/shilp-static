@@ -4,9 +4,9 @@ import Testimonials from "../components/Home/Testimonials";
 import { getCategoryData } from "../utils/helper";
 import { commerical, residential } from "../constants/projectTypes";
 import CardArea from "../components/Common/CardArea";
-import VideoPlayer from "./VideoPlayer";
 import InfoSection from "../components/Common/InfoSection";
 import Images from "../assets/Images";
+import BannerComponent from "../components/Common/BannerComponent";
 
 const Home = () => {
   const commercialData = getCategoryData(commerical);
@@ -14,8 +14,11 @@ const Home = () => {
 
   return (
     <section>
+      {/* Homepage Banner */}
+      <BannerComponent 
+        bannerType="homepageBanner"
+      />
       
-      <VideoPlayer />
 
       <div className="container-base overflow-hidden">
         
@@ -26,11 +29,7 @@ const Home = () => {
           title="Who We Are"
           subtitle="Trust in Shilp, Build Your Future"
           description="Shilp group, a real estate company in Ahmedabad that is driven by quality, integrity and authenticity has earned recognition as one of the top builders of Ahmedabad. The company is known for undertaking large, diverse projects, fostering innovation, embracing emerging technologies, and making a difference for their clients, employees and community. We are a brand that people trust because our projects helps to house people’s ambitions."
-          description2={
-            <>
-              Founded in 2004 by Mr. Yash Brahmbhatt, Shilp Group started with a small land acquisition and has since grown into a trusted brand shaping Ahmedabad’s skyline. It was the first to develop projects on Sindhu Bhavan Road, now a prime location, and continues to pioneer strategic real estate developments. Adapting to trends while staying true to timeless values, Shilp Group has also <strong>know more</strong>
-            </>
-          }
+          description2="Founded in 2004 by Mr. Yash Brahmbhatt, Shilp Group started with a small land acquisition and has since grown into a trusted brand shaping Ahmedabad's skyline. It was the first to develop projects on Sindhu Bhavan Road, now a prime location, and continues to pioneer strategic real estate developments. Adapting to trends while staying true to timeless values, Shilp Group has also know more"
           home='true'
          is_button="true"
        />

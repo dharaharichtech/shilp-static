@@ -2,7 +2,6 @@ import { useState } from "react";
 import Title from "../Common/Title";
 import AnimateOnInView from "../../animation/AnimateOnInView";
 import ImageModal from "../Modals/ImageModal";
-import skylinepdf from "../../assets/Images/shilpProjects/northSky/northsky_brochure.pdf"
 
 const titleVariants = {
   hidden: { opacity: 0, x: -100 },
@@ -10,15 +9,6 @@ const titleVariants = {
     opacity: 1,
     x: 0,
     transition: { duration: 0.8, delay: 0.5, ease: "easeInOut" },
-  },
-};
-
-const galleryHeadingVariants = {
-  hidden: { opacity: 0, x: -100 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, delay: 0.3, ease: "easeInOut" },
   },
 };
 

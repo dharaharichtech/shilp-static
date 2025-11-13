@@ -62,6 +62,7 @@ const ShilpProjects = () => {
       <div className="w-full">
         <ProjectBanner
           data={projectDetails?.details.banner_imgs}
+          mobileImage={projectDetails?.details.mobile_banner_imgs || projectDetails?.details.banner_imgs}
           black="true"
         />
       </div>
@@ -122,7 +123,6 @@ const ShilpProjects = () => {
       {projectDetails?.details?.amenities && (
         <Amenities
           amenities={projectDetails.details.amenities}
-          title={projectDetails?.title}
         />
       )}
 

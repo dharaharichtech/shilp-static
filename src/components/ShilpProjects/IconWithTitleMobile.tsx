@@ -19,6 +19,12 @@ import status80 from "../../assets/Images/Progress bar/8.svg";
 import status90 from "../../assets/Images/Progress bar/9.svg";
 import status100 from "../../assets/Images/Progress bar/10.svg";
 
+interface IconWithTitleMobileProps {
+  handleDownloadClick: (event: React.MouseEvent) => void;
+  handleInquiryClick: (event: React.MouseEvent) => void;
+  comp_status: string;
+}
+
 // Function to map project status to the corresponding image
 const getStatusIcon = (status: number) => {
   if (status <= 10) return status10;
@@ -97,7 +103,7 @@ const IconWithTitleMobile = ({ handleDownloadClick, handleInquiryClick, comp_sta
                   className="flex items-center gap-6 hover:text-black text-customGrey transition-colors cursor-pointer"
                   onClick={(e) =>
                     item.onClick
-                      ? item.onClick()
+                      ? item.onClick(e)
                       : item.href
                       ? handleHref({ e, href: item.href, scrollToSection })
                       : null

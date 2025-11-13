@@ -89,7 +89,7 @@ const FloorPlans = ({ data }: FloorPlansProps) => {
             <div className="w-full lg:w-1/2">
               <Title text="Floor Plans" className="mb-10" />
               <div className="mt-3">
-                {visibleFloors.map((floor, idx) => (
+                {visibleFloors.map((floor) => (
                   <div
                     key={`floor-${floor.id}`}
                     className={`flex items-center justify-between py-2 border-b-2 cursor-pointer ${

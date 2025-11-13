@@ -1,12 +1,9 @@
-import Images from "../assets/Images";
-import BannerImg from "../components/BannerImg";
-import mobile_pp from "../assets/Images/mobile/shilp-privacy-policy.webp"
+import BannerComponent from "../components/Common/BannerComponent";
 
 const PrivacyPolicy = () => {
   return (
     <>
-      <BannerImg image={Images.newPrivacyPolicyBanner} className="sm:block hidden" />
-      <BannerImg image={mobile_pp} className="sm:hidden block" />
+      <BannerComponent bannerType="privacyPolicyBanner" />
       <section className="px-5 md:px-10 overflow-hidden space-y-8 py-10 ">
         <div>
           <p className="text-xl text-[#727272]">

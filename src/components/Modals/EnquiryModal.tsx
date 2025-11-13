@@ -191,7 +191,8 @@ const EnquiryModal = ({
                   error={!!errors.contact}
                   helperText={errors.contact?.message}
                   onInput={(e) => {
-                    e.target.value = Math.max(0, parseInt(e.target.value))
+                    const target = e.target as HTMLInputElement;
+                    target.value = Math.max(0, parseInt(target.value))
                       .toString()
                       .slice(0, 10);
                   }}

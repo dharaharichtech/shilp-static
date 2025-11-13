@@ -139,7 +139,7 @@ const ProjectTitleArea = ({
 
           {/* Small and medium screen layout (sm and md) */}
           <IconWithTitleMobile
-            comp_status={comp_status}
+            comp_status={comp_status || "0"}
             handleInquiryClick={handleInquiryClick}
             handleDownloadClick={handleDownloadClick}
           />

@@ -2,8 +2,7 @@ import Images from "../assets/Images";
 import OurTeamSection from "../components/About/OurTeamSection";
 import AnimateOnInView from "../animation/AnimateOnInView";
 import TitleTwo from "../components/Common/TitleTwo";
-import BannerImg from "../components/BannerImg";
-import mobileteam from "../assets/Images/mobile/shilp-group-building-front-view.webp"
+import BannerComponent from "../components/Common/BannerComponent";
 
 const textVariants = {
   hidden: { x: -100, opacity: 0 },
@@ -34,13 +33,12 @@ const imageVariants = {
 const OurTeam = () => {
   return (
     <>
-       <BannerImg image={`${Images.ourTeamBanner}`} className="sm:block hidden" />
-       <BannerImg image={`${mobileteam}`} className="sm:hidden block" />
+       <BannerComponent bannerType="ourTeamBanner" />
       <section className="container-base mb-10 px-10">
         <OurTeamSection
           heading="Meet Our Team"
-          // title="Meet Our Team"
-          // subtitle="Our team is committed to delivering exceptional service and innovative solutions."
+          title="Meet Our Team"
+          subtitle="Our team is committed to delivering exceptional service and innovative solutions."
           isViewbtnVisible={false}
         />
 

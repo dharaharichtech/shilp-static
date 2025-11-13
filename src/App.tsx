@@ -18,7 +18,6 @@ function App() {
 
   return (
     <>
-    
       {loading ? <Loader /> : <AppRoutes />} 
     </>
   );

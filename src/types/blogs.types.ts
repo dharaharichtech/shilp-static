@@ -2,10 +2,11 @@ export type BlogPoint = {
   title: string; 
   subtitle: string | string[]; 
   image : string | null;
+  child?: any[];
 };
 
 export type BlogData = {
-    id: number;
+    id: number | string;
     image: string;
     alt:string;
     date: string;

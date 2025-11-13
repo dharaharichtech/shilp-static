@@ -2,6 +2,8 @@ import { GoArrowUpRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { BlogData } from "../../types/blogs.types";
 import Calendar from "../../assets/Icons/calendar.svg";
+import { imageUtils } from "../../utils/imageUtils";
+
 interface BlogCardProps {
   data: BlogData;
   className?: string;
@@ -15,8 +17,15 @@ const BlogCard = ({ data, className = "p-10" }: BlogCardProps) => {
       <img
         src={data.image}
         className="w-full border border-[#727272] sm:h-[300px] h-[200px] object-cover mb-4 rounded-md"
-        alt="blog-img"
+        alt={data.alt || data.title}
         loading="lazy"
+        onError={(e) => {
+          // Fallback to imageUtils if direct image fails
+          const target = e.target as HTMLImageElement;
+          if (!target.src.includes('localhost')) {
+            target.src = imageUtils.getImageUrl(data.image);
+          }
+        }}
       />
       <div className={`relative mb-2`}>
         <div className="my-2 flex gap-2 text-[#727272] text-[14px]">
@@ -36,7 +45,7 @@ const BlogCard = ({ data, className = "p-10" }: BlogCardProps) => {
         <span className="block">{data.desc.slice(0, 250)}...</span>
       </p>
       <div className="flex items-center gap-3 cursor-pointer group">
-        <button className="border-[1px] border-black px-4 py-2 rounded-[30px] flex flex  items-center gap-2 group hover:bg-black transition-all duration-300">
+        <button className="border-[1px] border-black px-4 py-2 rounded-[30px] flex items-center gap-2 group hover:bg-black transition-all duration-300">
           <span className="text-black group-hover:text-white transition-all duration-300">
             Read More...
           </span>

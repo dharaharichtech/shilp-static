@@ -2,8 +2,48 @@ import { blogData } from "../assets/data/blogData";
 import { projectData } from "../assets/data/projectData";
 import { BlogData } from "../types/blogs.types";
 import { ProjectDataTypes } from "../types/projectDataTypes.types";
+import { blogApi } from "../api/blogApi";
+import { imageUtils } from "./imageUtils";
 
-export const getBlogData = (blogId: string) => {
+// Updated function to use API instead of static data
+export const getBlogData = async (blogUrl: string) => {
+  try {
+    // First try to fetch from API
+    const response = await blogApi.getBlogBySlugTransformed(blogUrl);
+    
+    if (response.success && response.data) {
+      const blogWithImage = {
+        ...response.data,
+        image: imageUtils.getImageUrl(response.data.image)
+      } as BlogData;
+      
+      return { blogDetails: blogWithImage };
+    }
+    
+    // Fallback to static data if API fails
+    const foundBlog = blogData.find((blog: BlogData) => blog.url === blogUrl);
+    
+    if (foundBlog) {
+      return { blogDetails: foundBlog };
+    }
+    
+    return { error: `Blog "${blogUrl}" not found` };
+  } catch (error) {
+    console.error('Error fetching blog data:', error);
+    
+    // Fallback to static data on error
+    const foundBlog = blogData.find((blog: BlogData) => blog.url === blogUrl);
+    
+    if (foundBlog) {
+      return { blogDetails: foundBlog };
+    }
+    
+    return { error: `Blog "${blogUrl}" not found` };
+  }
+};
+
+// Legacy function for backward compatibility
+export const getBlogDataStatic = (blogId: string) => {
   const foundBlog = blogData.find((blog: BlogData) => blog.url === blogId);
 
   if (!blogId) {
